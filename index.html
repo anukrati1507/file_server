@@ -1,34 +1,70 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <form action="http://localhost:5500/put"
-    enctype="multipart/form-data"
-    method="post">
-    <input type="file" name="myFile" />
-    <input type="text" name="fileName" id="fileName">
-    <input type="submit" value="Upload file" />
-
-
+  </head>
+  <body>
+    <form
+      action="http://localhost:5500/put"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <h3>File Upload</h3>
+      <input type="file" name="myFile" />
+      <input type="text" name="fileName" id="fileName" />
+      <input type="submit" value="Upload file" />
     </form>
-    <form action="http://localhost:5500/delete"
-    enctype="multipart/form-data"
-    method="post">
-    <input type="text" name="myFile" />
-    <input type="submit" value="Delete file" />
-
-
+    <hr />
+    <form
+      action="http://localhost:5500/get"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <h3>Get File</h3>
+      <input type="text" name="myFile" />
+      <input type="submit" value="Get file" />
     </form>
-    <form action="http://localhost:5500/list"
-    enctype="multipart/form-data"
-    method="post">
-    <input type="submit" value="List files" />
-
-
+    <hr />
+    <h3>File Delete</h3>
+    <form
+      action="http://localhost:5500/delete"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input type="text" name="myFile" />
+      <input type="submit" value="Delete file" />
     </form>
-</body>
+    <hr />
+    <h3>List Files</h3>
+    <form
+      action="http://localhost:5500/list"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input type="submit" value="List files" />
+    </form>
+    <hr />
+    <h3>Rename File</h3>
+    <form
+      action="http://localhost:5500/rename"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input
+        type="text"
+        name="currName"
+        id=""
+        placeholder="Original name of the file"
+      />
+      <input
+        type="text"
+        name="newName"
+        id=""
+        placeholder="New name of the file"
+      />
+      <input type="submit" value="Rename file" />
+    </form>
+  </body>
 </html>

@@ -41,6 +41,27 @@ func Put(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func Get(rw http.ResponseWriter, req *http.Request) {
+	fileName := req.FormValue("myFile")
+
+    if fileName == "" {
+        fmt.Fprint(rw, "Input not Recieved")
+        fmt.Println("Input not Recieved")
+        return
+    }
+
+	fileBytes, err := ioutil.ReadFile("temp-images/" + fileName)
+	if err != nil {
+        fmt.Fprint(rw, err.Error())
+        fmt.Println(err.Error())
+		return
+	}
+
+	rw.WriteHeader(http.StatusOK)
+	rw.Header().Set("Content-Type", "application/octet-stream")
+	rw.Write(fileBytes)
+}
+
 func Delete(rw http.ResponseWriter, req *http.Request) {
 	fileDel := req.FormValue("myFile")
 	if fileDel == "" {
@@ -69,4 +90,18 @@ func List(rw http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(rw, file.Name(), " ", file.IsDir(), "\n")
 	}
 
+}
+
+func Rename(rw http.ResponseWriter, req *http.Request) {
+	baseDir := "./temp-images/"
+	currName := req.FormValue("currName")
+	newName := req.FormValue("newName")
+	err := os.Rename(baseDir + currName, baseDir + newName)
+	if err != nil {
+		fmt.Fprintf(rw, currName)
+		fmt.Fprintf(rw, newName)
+		fmt.Fprintf(rw, err.Error())
+		return
+	}
+	fmt.Fprint(rw, "File ", currName, " renamed to ", newName, " successfully!")
 }
